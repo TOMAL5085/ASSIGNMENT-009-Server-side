@@ -1,9 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-
-const Tutor = require("../models/Tutor");
-const Booking = require("../models/Booking");
-const verifyToken = require("../middleware/verifyToken");
+import express from "express";
+import mongoose from "mongoose";
+import Booking from "../models/Booking.js";
+import Tutor from "../models/Tutor.js";
+import verifyToken from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
@@ -126,4 +125,4 @@ router.delete("/:id", verifyToken, async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;

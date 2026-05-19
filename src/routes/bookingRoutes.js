@@ -1,9 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-
-const Booking = require("../models/Booking");
-const Tutor = require("../models/Tutor");
-const verifyToken = require("../middleware/verifyToken");
+import express from "express";
+import mongoose from "mongoose";
+import Booking from "../models/Booking.js";
+import Tutor from "../models/Tutor.js";
+import verifyToken from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
@@ -56,9 +55,7 @@ router.post("/", verifyToken, async (req, res, next) => {
     }
 
     if (tutor.totalSlot <= 0) {
-      return res
-        .status(400)
-        .json({ message: "No available slots left." });
+      return res.status(400).json({ message: "No available slots left." });
     }
 
     const now = new Date();
@@ -78,7 +75,7 @@ router.post("/", verifyToken, async (req, res, next) => {
 
     if (!updatedTutor) {
       return res.status(400).json({
-        message: "This session is fully booked. You can’t join at the moment.",
+        message: "This session is fully booked. You can't join at the moment.",
       });
     }
 
@@ -132,4 +129,4 @@ router.patch("/:id/cancel", verifyToken, async (req, res, next) => {
   }
 });
 
-module.exports = router;
+export default router;
