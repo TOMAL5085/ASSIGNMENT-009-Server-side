@@ -159,10 +159,7 @@ const tutors = [
 async function seedTutors() {
   await mongoose.connect(process.env.MONGODB_URI);
 
-  const ids = tutors.map((tutor) => tutor._id);
-  await Tutor.deleteMany({
-    _id: { $in: ids },
-  });
+  await Tutor.deleteMany({});
 
   for (const tutor of tutors) {
     await Tutor.create({
