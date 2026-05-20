@@ -12,6 +12,12 @@ function createSessionToken() {
   return `MQ-${stamp}-${random}`;
 }
 
+function startOfDay(date) {
+  const normalized = new Date(date);
+  normalized.setHours(0, 0, 0, 0);
+  return normalized;
+}
+
 router.get("/my-bookings", verifyToken, async (req, res, next) => {
   try {
     const bookings = await Booking.find({ studentEmail: req.user.email }).sort({
@@ -58,12 +64,12 @@ router.post("/", verifyToken, async (req, res, next) => {
       return res.status(400).json({ message: "No available slots left." });
     }
 
-    const now = new Date();
-    const sessionDate = new Date(tutor.sessionStartDate);
+    const today = startOfDay(new Date());
+    const sessionDate = startOfDay(tutor.sessionStartDate);
 
-    if (now < sessionDate) {
+    if (sessionDate < today) {
       return res.status(400).json({
-        message: "Booking is not available yet for this tutor.",
+        message: "This session date has already passed. Booking is closed for this tutor.",
       });
     }
 
