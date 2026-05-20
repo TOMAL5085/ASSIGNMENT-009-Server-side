@@ -67,9 +67,9 @@ router.post("/", verifyToken, async (req, res, next) => {
     const today = startOfDay(new Date());
     const sessionDate = startOfDay(tutor.sessionStartDate);
 
-    if (sessionDate < today) {
+    if (today < sessionDate) {
       return res.status(400).json({
-        message: "This session date has already passed. Booking is closed for this tutor.",
+        message: "Booking is not available yet for this tutor",
       });
     }
 
