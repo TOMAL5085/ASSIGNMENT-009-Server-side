@@ -1,6 +1,6 @@
 # MediQueue Server
 
-Live API: `https://your-mediqueue-api.onrender.com`
+Live API: `https://assignment-009-server-side.vercel.app`
 
 MediQueue Server is the backend API for the MediQueue tutor booking platform. It handles authentication support, JWT token exchange, tutor management, booking management, and database communication for the client application.
 
