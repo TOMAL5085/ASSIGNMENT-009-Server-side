@@ -11,6 +11,7 @@ const creator = {
 
 const tutors = [
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0ee9e"),
     tutorName: "Ayesha Rahman",
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
     subject: "Mathematics",
@@ -26,6 +27,7 @@ const tutors = [
     description: "Ayesha breaks complex algebra and calculus into calm, structured lessons with regular problem-solving drills.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0ee9f"),
     tutorName: "Mahmud Hasan",
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
     subject: "Physics",
@@ -41,6 +43,7 @@ const tutors = [
     description: "Mahmud uses visual explanations and exam-style practice to make mechanics and electricity easier to retain.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea0"),
     tutorName: "Nusrat Jahan",
     photo: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
     subject: "Chemistry",
@@ -56,6 +59,7 @@ const tutors = [
     description: "Nusrat focuses on concept clarity, reaction mapping, and short memorization systems for fast revision.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea1"),
     tutorName: "Tanvir Alam",
     photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
     subject: "Biology",
@@ -71,6 +75,7 @@ const tutors = [
     description: "Tanvir combines diagram-based teaching with chapter-wise quizzes to strengthen recall and confidence.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea2"),
     tutorName: "Farzana Kabir",
     photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=900&q=80",
     subject: "English",
@@ -86,6 +91,7 @@ const tutors = [
     description: "Farzana helps students improve fluency, grammar accuracy, and confident writing through guided practice.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea3"),
     tutorName: "Sabbir Ahmed",
     photo: "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=900&q=80",
     subject: "ICT",
@@ -101,6 +107,7 @@ const tutors = [
     description: "Sabbir makes ICT practical with spreadsheets, logic-building exercises, and simple coding walkthroughs.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea4"),
     tutorName: "Israt Faria",
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80",
     subject: "Accounting",
@@ -116,6 +123,7 @@ const tutors = [
     description: "Israt emphasizes ledger accuracy, journal flow, and exam-ready shortcuts for commerce students.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea5"),
     tutorName: "Rafiul Karim",
     photo: "https://images.unsplash.com/photo-1504257432389-52343af06ae3?auto=format&fit=crop&w=900&q=80",
     subject: "Economics",
@@ -131,6 +139,7 @@ const tutors = [
     description: "Rafiul teaches economics with real-life examples so theories and graphs stay easier to understand.",
   },
   {
+    _id: new mongoose.Types.ObjectId("6a0cb37fe16e2703f4d0eea6"),
     tutorName: "Samia Chowdhury",
     photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
     subject: "Mathematics",
@@ -150,10 +159,9 @@ const tutors = [
 async function seedTutors() {
   await mongoose.connect(process.env.MONGODB_URI);
 
-  const names = tutors.map((tutor) => tutor.tutorName);
+  const ids = tutors.map((tutor) => tutor._id);
   await Tutor.deleteMany({
-    "creator.email": creator.email,
-    tutorName: { $in: names },
+    _id: { $in: ids },
   });
 
   const docs = tutors.map((tutor) => ({
